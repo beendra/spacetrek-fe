@@ -2,3 +2,10 @@
     display: none;
 }
 
+#create-character {
+    display: none;
+}
+
+.images {
+    width: 200px;
+}

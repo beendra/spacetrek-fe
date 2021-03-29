@@ -1,11 +1,15 @@
 //load with sign-in/signup 
 const usersUrl = "http://127.0.0.1:3000/users"
+const charsUrl = "http://127.0.0.1:3000/characters"
 // ************************ constants***********************
 
 const loginDiv = document.querySelector('div#login')
 const loginButton = document.querySelector('#login')
 const mainDiv = document.querySelector('div#main')
 const logo = document.querySelector('img#logo')
+const startButton = document.querySelector('button#start')
+const charDiv = document.querySelector('div#characters')
+
 
 // ************************ pages***********************
 
@@ -19,7 +23,7 @@ const page6 = document.querySelector('div#end')
 
 // ************************ init ***********************
 document.addEventListener('DOMContentLoaded', () => {
-  login()
+    login()
 })
 
 // ************************ login ***********************
@@ -29,20 +33,19 @@ function login () {
     const form = loginDiv.querySelector('form')
 
     form.addEventListener('submit', (e) => {
-      e.preventDefault()
-      const username = e.target.username.value
-
-      fetch(usersUrl, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: JSON.stringify({username})
-      })
+        e.preventDefault()
+        const username = e.target.username.value
+        fetch(usersUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({username})
+        })
         .then(res => res.json())
         .then(user => mainPage(user))
-       
+
         loginDiv.style.display = "none"
         mainDiv.style.display = "block"
     })
@@ -51,11 +54,11 @@ function login () {
 }
 
 
-// ************************ start/help ***********************
+// ************************ event listeners ***********************
 
 mainDiv.addEventListener('click', (e) => {
     if (e.target.matches('button#start')){
-        
+        // debugger
         const id = parseInt(e.target.dataset.id)
         startGame(id);
         mainDiv.style.display = "none"
@@ -67,6 +70,24 @@ mainDiv.addEventListener('click', (e) => {
 
         help();
         console.log('help')
+    } else if (e.target.matches('button#toggle')){
+        console.log('click')
+        const charCreateForm = document.querySelector('form#create-character')
+            if (charCreateForm.style.display === "block"){
+                charCreateForm.style.display = "none"
+            }
+            else {
+                charCreateForm.style.display = "block"
+            }
+        console.log()
+    }
+
+})
+
+charDiv.addEventListener('click', (e) => {
+    if (e.target.matches('img.images')){
+        startButton.dataset.id = e.target.dataset.id
+        console.log(startButton.dataset.id)
     }
 })
 
@@ -76,17 +97,16 @@ mainDiv.addEventListener('click', (e) => {
 
 function mainPage (user) {
 
-  logo.dataset.id = user.id
-  
-  mainDiv.innerHTML = `
-    <h2>Welcome Space Knight ${user.username}</h2>
-    <button type="button" id="start">Start Game</button>
-    <br><br>
-    <button type="button" id="help">help</button>
-  `
-  startButton = document.querySelector('button#start')
-  startButton.dataset.id = user.id
+    logo.dataset.id = user.id
+        const greetingH2 = mainDiv.querySelector('h2')
 
+        greetingH2.textContent = `
+        Welcome Space Knight ${user.username}
+        `
+
+    fetch (`${usersUrl}/${user.id}`)
+    .then(resp => resp.json())
+    .then(userChars => renderAllCharacters(userChars))
 }
 
 // ************************ start ***********************
@@ -94,7 +114,9 @@ function mainPage (user) {
 
 
 function startGame (id) {
-    fetch(`${usersUrl}/${id}`)
+    // debugger
+
+    fetch(`${charsUrl}/${id}`)
         .then(res => res.json())
         .then(({current_state}) => currentState(current_state))
 
@@ -201,3 +223,22 @@ function updateCurrentState (currentPage) {
     .then(res => res.json())
     .then(res => console.log(res))
 }
+
+/*** HELPER METHODS ***/
+
+    function renderOneCharacter(charObj){
+        const show = document.querySelector('ul#show')
+        const img = document.createElement('img')
+        img.dataset.id = charObj.id
+        img.className = "images"
+        img.src = charObj.image
+        img.alt = charObj.name
+
+        show.append(img)
+    }
+
+    function renderAllCharacters(userChars){
+        userChars.forEach(charObj => {
+            renderOneCharacter(charObj)
+        })
+    }
