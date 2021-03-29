@@ -5,6 +5,16 @@ const usersUrl = "http://127.0.0.1:3000/users"
 const loginDiv = document.querySelector('div#login')
 const loginButton = document.querySelector('#login')
 const mainDiv = document.querySelector('div#main')
+const logo = document.querySelector('img#logo')
+
+// ************************ pages***********************
+
+const page1 = document.querySelector('div[data-id="1"]')
+const page2 = document.querySelector('div[data-id="2"]')
+const page3 = document.querySelector('div[data-id="3"]')
+const page4 = document.querySelector('div[data-id="4"]')
+const page5 = document.querySelector('div[data-id="5"]')
+const page6 = document.querySelector('div#end')
 
 
 // ************************ init ***********************
@@ -66,7 +76,7 @@ mainDiv.addEventListener('click', (e) => {
 
 function mainPage (user) {
 
-  
+  logo.dataset.id = user.id
   
   mainDiv.innerHTML = `
     <h2>Welcome Space Knight ${user.username}</h2>
@@ -89,14 +99,6 @@ function startGame (id) {
         .then(({current_state}) => currentState(current_state))
 
 
-    // mainDiv.innerHTML = `
-    
-    // <h2>${place.name}</h2>
-    // <h2>park your spaceship at the parking meteor for 2 starbux</h2>
-    // <p>${place.question}</p>
-
-    // `
-
 }
 
 
@@ -108,50 +110,94 @@ function currentState (current_state) {
             pageOne();
             break;
         case 1: 
-            console.log('page 2');
+            pageTwo();
             break;
         case 2:
-            console.log('page 3');
+            pageThree()
             break;
         case 3: 
-            console.log('page 4');
+            pageFour();
             break;
         case 4: 
-            console.log('page 5');
+            pageFive();
             'break';
         case 5: 
-            console.log('page 6');
+            end();
             break;
     }
 
 }
 
 function pageOne () {
-    const page = document.querySelector('div[data-id="1"]')
-    page.style.display = "block"
+    
+    page1.style.display = "block"
+    updateCurrentState(1)
 }
 
 function pageTwo () {
-    const page = document.querySelector('div[data-id="2"]')
-    page.style.display = "block"
+
+    page2.style.display = "block"
+    page1.style.display = "none"
+    updateCurrentState(2)
+
 }
 
 function pageThree () {
-    const page = document.querySelector('div[data-id="3"]')
-    page.style.display = "block"
+    
+    page3.style.display = "block"
+    page2.style.display = "none"
+    updateCurrentState(3)
 }
 
 function pageFour () {
-    const page = document.querySelector('div[data-id="4"]')
-    page.style.display = "block"
+    
+    page4.style.display = "block"
+    page3.style.display = "none"
+    updateCurrentState(4)
 }
 
 function pageFive () {
-    const page = document.querySelector('div[data-id="5"]')
-    page.style.display = "block"
+    
+    page5.style.display = "block"
+    page4.style.display = "none"
+    updateCurrentState(5)
 }
 
 function end () {
-    const page = document.querySelector('div#end')
-    page.style.display = "block"
+    
+    page6.style.display = "block"
+    page5.style.display = "none"
+    updateCurrentState(0)
+}
+
+document.addEventListener('click', (e) => {
+
+    if (e.target.matches('button[id="1"]')) {
+        pageTwo()
+    } else if (e.target.matches('button[id="2"]')) {
+        pageThree()
+
+    } else if (e.target.matches('button[id="3"]')) {
+        pageFour()
+    } else if (e.target.matches('button[id="4"]')) {
+        pageFive()
+    } else if (e.target.matches('button[id="5"]')) {
+        end()
+    }
+
+
+})
+
+function updateCurrentState (currentPage) {
+    const id = parseInt(logo.dataset.id)
+    fetch(`${usersUrl}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }, 
+        body: JSON.stringify({current_state: currentPage})
+    })
+    .then(res => res.json())
+    .then(res => console.log(res))
 }
