@@ -11,6 +11,9 @@ const startButton = document.querySelector('button#start')
 const charDiv = document.querySelector('div#characters')
 const createCharacterForm = document.querySelector('form#create-character')
 const items = document.querySelector('div#items')
+const starbuxPTag = items.querySelector('p#starbux')
+const marsbarPTag = items.querySelector('p#marsbar')
+const livesPTag = items.querySelector('p#lives')
 
 
 // ************************ pages***********************
@@ -67,13 +70,20 @@ mainDiv.addEventListener('click', (e) => {
     if (e.target.matches('button#start')){
     
         const id = parseInt(e.target.dataset.id)
-        startGame(id);
+
         mainDiv.style.display = "none"
         items.style.display = "block"
 
+        fetch(`${charsUrl}/${id}`)
+            .then(res => res.json())
+            .then(({starbux, marsbar, lives}) => {
+                starbuxPTag.textContent = starbux
+                marsbarPTag.textContent = marsbar
+                livesPTag.textContent = lives
+                startGame(id)
+            })
 
 
-        
         
         
         
@@ -99,6 +109,23 @@ charDiv.addEventListener('click', (e) => {
     if (e.target.matches('img.images')){
         startButton.dataset.id = e.target.dataset.id
         console.log(startButton.dataset.id)
+    
+    } else if(e.target.matches('button')) {
+        
+        console.log('delete')
+        fetch(`${charsUrl}/${parseInt(e.target.dataset.id)}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }        
+        }) 
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                e.target.previousElementSibling.remove()
+                e.target.remove()
+            })
     }
     //43 add delete character button
 })
@@ -156,18 +183,18 @@ page4.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
 
     //43 update starbux fetch and update the view
-    const id = parseInt(startButton.dataset.id)
+    // const id = parseInt(startButton.dataset.id)
     if (e.target.matches('button[id="1"]')) {
-        fetch(`${charsUrl}/${id}`, { 
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({starbux: 3})
-        })
-            .then(res => res.json())
-            .then(charObj => console.log(charObj))
+    //     fetch(`${charsUrl}/${id}`, { 
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify({starbux: 3})
+    //     })
+    //         .then(res => res.json())
+    //         .then(charObj => console.log(charObj))
 
         
         pageTwo()
@@ -178,13 +205,10 @@ document.addEventListener('click', (e) => {
     } else if (e.target.matches('button[id="3"]')) {
         pageFour()
     }  else if (e.target.matches('button[id="5"]')) {
-        end()
+        pageSix()
     } else if (e.target.matches('button[id="6"]')) {
-        pageSeven()
-    } else if (e.target.matches('button[id="7"]')) {
-        //43 add back to main function
-        mainPage()
-    }
+        end()
+    } 
 
 
 
@@ -242,6 +266,9 @@ function currentState (current_state) {
             pageFive();
             'break';
         case 5: 
+            pageSix();
+            break;
+        case 6: 
             end();
             break;
     }
@@ -310,12 +337,16 @@ function end () {
     function renderOneCharacter(charObj){
         const show = document.querySelector('ul#show')
         const img = document.createElement('img')
+        const btn = document.createElement('button')
+        btn.textContent = '❌'
+        btn.dataset.id = charObj.id
         img.dataset.id = charObj.id
         img.className = "images"
         img.src = charObj.image
         img.alt = charObj.name
 
-        show.append(img)
+        show.append(img, btn)
+
     }
 
     function renderAllCharacters(userChars){
@@ -325,8 +356,20 @@ function end () {
     }
 
 
-    //43 fix this patch
     function updateCurrentState (currentPage) {
+        
+        const starbux = parseInt(starbuxPTag.textContent)
+        const marsbar = parseInt(marsbarPTag.textContent)
+        const lives = parseInt(livesPTag.textContent)
+        
+
+        charObj = {
+            current_state: currentPage,
+            starbux: starbux,
+            marsbar: marsbar,
+            lives: lives
+        }
+        
         const id = parseInt(startButton.dataset.id)
         fetch(`${charsUrl}/${id}`, {
             method: 'PATCH',
@@ -336,6 +379,17 @@ function end () {
             }, 
             body: JSON.stringify({current_state: currentPage})
         })
-        .then(res => res.json())
-        .then(res => console.log(res))
+            .then(res => res.json())
+            .then( charObj => console.log(charObj))
     }
+
+function loseLife() {
+    fetch(`${charsUrl}/${id}`, {
+        method: 'UPDATE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(charObj)
+    })
+}
