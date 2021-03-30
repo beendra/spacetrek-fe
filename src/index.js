@@ -61,6 +61,8 @@ function login () {
 // ******************* event listeners ********************
 // ******************* el main page ************************
 
+
+
 mainDiv.addEventListener('click', (e) => {
     if (e.target.matches('button#start')){
     
@@ -98,6 +100,7 @@ charDiv.addEventListener('click', (e) => {
         startButton.dataset.id = e.target.dataset.id
         console.log(startButton.dataset.id)
     }
+    //43 add delete character button
 })
 
 
@@ -130,7 +133,7 @@ page4.addEventListener('click', (e) => {
     if (e.target.matches('button#galaxy')) {
         const audio = e.target.previousElementSibling
         audio.play()
-        //update lose life
+        //43 update lose life
         //if lives == 0, game over screen
 
     } else if(e.target.matches('button#saturn')) {
@@ -142,7 +145,7 @@ page4.addEventListener('click', (e) => {
     } else if(e.target.matches('button#rolled')) {
         const audio = e.target.previousElementSibling
         audio.play()
-        //update lose life
+        //43 update lose life
         //if lives == 0, game over screen
         page4.style.display = "none"
         pageOne()
@@ -212,7 +215,10 @@ function startGame (id) {
 
     fetch(`${charsUrl}/${id}`)
         .then(res => res.json())
-        .then(({current_state}) => currentState(current_state))
+        .then(({current_state}) => {
+            currentState(current_state)
+           
+})
 }
 
 
