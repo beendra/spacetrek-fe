@@ -76,17 +76,17 @@ mainDiv.addEventListener('click', (e) => {
 
         fetch(`${charsUrl}/${id}`)
             .then(res => res.json())
-            .then(({starbux, marsbar, lives}) => {
-                starbuxPTag.textContent = starbux
-                marsbarPTag.textContent = marsbar
-                livesPTag.textContent = lives
+            .then((charObj) => {
+                starbuxPTag.textContent = charObj.starbux
+                marsbarPTag.textContent = charObj.marsbar
+                livesPTag.textContent = charObj.lives
                 startGame(id)
+                const charInPlayDiv = document.querySelector('div#character-in-play')
+                charInPlayDiv.innerHTML = `
+                <img src= "${charObj.image}" alt= ${charObj.name}>`
+                charInPlayDiv.style.display = "block"
             })
-
-
-        
-        
-        
+        act
     } else if (e.target.matches('button#help')){
 
         help();
@@ -127,7 +127,6 @@ charDiv.addEventListener('click', (e) => {
                 e.target.remove()
             })
     }
-    //43 add delete character button
 })
 
 
@@ -135,19 +134,29 @@ charDiv.addEventListener('click', (e) => {
 
 createCharacterForm.addEventListener('submit', (e) => {
     e.preventDefault()
-   const name = e.target.name.value
-   const image = e.target.image.value
-   const user_id = logo.dataset.id
+    const name = e.target.name.value
+    const image = e.target.image.value
+    const user_id = logo.dataset.id
     
-   const newChar = {
+    const newChar = {
+        name,
+        image,
+        user_id,
+        starbux: 5,
+        marsbar: 2,
+        lives: 2,
+        current_state: 0
+    }
+
+    const body = {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     },
-    body: JSON.stringify({name, image, user_id})
+    body: JSON.stringify(newChar)
 }
-    fetch(charsUrl, newChar)
+    fetch(charsUrl, body)
         .then(res => res.json())
         .then(charObj => {
             renderOneCharacter(charObj)
@@ -156,6 +165,8 @@ createCharacterForm.addEventListener('submit', (e) => {
 
 })
 // ******************* el page 4 ********************
+
+
 page4.addEventListener('click', (e) => {
     if (e.target.matches('button#galaxy')) {
         const audio = e.target.previousElementSibling
@@ -210,6 +221,11 @@ document.addEventListener('click', (e) => {
         end()
     } 
 
+    else if (e.target.matches('button[id="7"]')){
+        page7.style.display = "none"
+        mainDiv.style.display = "block"
+        items.style.display = "none"
+    }
 
 
 })
@@ -241,7 +257,7 @@ function startGame (id) {
         .then(res => res.json())
         .then(({current_state}) => {
             currentState(current_state)
-           
+
 })
 }
 
@@ -383,13 +399,74 @@ function end () {
             .then( charObj => console.log(charObj))
     }
 
-function loseLife() {
-    fetch(`${charsUrl}/${id}`, {
-        method: 'UPDATE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(charObj)
-    })
-}
+function renderItems({starbux, marsbar, lives}){
+    starbuxPTag.textContent = starbux
+    marsbarPTag.textContent = marsbar
+    livesPTag.textContent = lives
+    }
+
+
+// function loseLife() {
+//     let downOne = parseInt(livesPTag.textContent) - 1
+//     if (downOne === 0){
+//         console.log('Game Over')
+//     }
+//     else {
+//         charObj = {
+//             current_state: currentPage,
+//             starbux: starbux,
+//             marsbar: marsbar,
+//             lives: lives
+//         }
+
+//         fetch(`${charsUrl}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json'
+//         },
+//         body: JSON.stringify({lives})
+//     })
+//     .then(resp => resp.json())
+//     .then()
+//     }
+
+//     //grab inner text content of current number of lives 
+//     //subtract one life
+//     //if that value === 0 game over
+//     //then reset other values in the fetch
+//     //else subtract 1, update with fetch, display the current lives on the screen
+//     //in the update will also have to pull the innerText of the other two p tags to update 
+
+// }
+
+// function resetChar(){
+//     const name = e.target.name.value
+//     const image = e.target.image.value
+//     const user_id = logo.dataset.id
+
+//     const newChar = {
+//         name,
+//         image,
+//         user_id,
+//         starbux: 5,
+//         marsbar: 2,
+//         lives: 2,
+//         current_state: 0
+//     }
+
+//     const body = {
+//     method: 'PATCH',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//     },
+//     body: JSON.stringify(newChar)
+// }
+//     fetch(charsUrl, body)
+//         .then(res => res.json())
+//         .then(charObj => {
+//             renderOneCharacter(charObj)
+//             console.log(charObj)
+//         })
+// }

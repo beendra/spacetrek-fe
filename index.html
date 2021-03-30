@@ -41,13 +41,18 @@
             placeholder="enter character name"
             class="input-text"
             />
-            <input
-            type="text"
+            <select
+            type="select"
             name="image"
-            value=""
             placeholder="pick a character design"
-            class="input-text"
-            />
+            class="dropdown"
+            >
+            <option value="./images/blueastroman.png">Blue</option>
+            <option value="./images/orangeastroman.png">Orange</option>
+            <option value="./images/purpleastroman.png">Purple</option>
+            <option value="./images/redastroman.png">Red</option>
+            <option value="./images/greenastroman.png">Green</option>
+            </select>
             <input
             type="submit"
             name="submit
@@ -82,16 +87,16 @@
             <h2>Neptunes</h2>
             <audio>
                 <source src="./audio/galaxy.m4a" type="audio/mp4" />
-             </audio>
-             <button id="galaxy">⚛️galaxy⚛️</button>
-             <audio>
+                </audio>
+                <button id="galaxy">⚛️galaxy⚛️</button>
+                <audio>
                 <source src="./audio/saturn.m4a" type="audio/mp4" />
-             </audio>
-             <button id="saturn">turn</button>
-             <audio>
+                </audio>
+                <button id="saturn">turn</button>
+                <audio>
                 <source src="./audio/rollled.m4a" type="audio/mp4" />
-             </audio>
-             <button id="rolled">✩stars✩</button>
+                </audio>
+                <button id="rolled">✩stars✩</button>
             <p>"Question"</p>
             <p>"Description"</p>
         </div>
@@ -112,6 +117,9 @@
             <button id="7">main </button>
         </div>
     </main>
+    <div id= "character-in-play" class= "pages">
+        
+    </div>
     <div id="items" class="pages">
     
         <img src="./images/marsbar.png" alt="MarsBars">
