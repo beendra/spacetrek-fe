@@ -86,7 +86,6 @@ mainDiv.addEventListener('click', (e) => {
                 <img src= "${charObj.image}" alt= ${charObj.name}>`
                 charInPlayDiv.style.display = "block"
             })
-        act
     } else if (e.target.matches('button#help')){
 
         help();
@@ -377,8 +376,11 @@ function end () {
         const starbux = parseInt(starbuxPTag.textContent)
         const marsbar = parseInt(marsbarPTag.textContent)
         const lives = parseInt(livesPTag.textContent)
+        console.log(`current page: ${currentPage}`)
+        items.dataset.id = currentPage
+        console.log(`items dataset_id: ${items.dataset.id}`)
         
-
+        debugger
         charObj = {
             current_state: currentPage,
             starbux: starbux,
@@ -393,7 +395,7 @@ function end () {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }, 
-            body: JSON.stringify({current_state: currentPage})
+            body: JSON.stringify(charObj)
         })
             .then(res => res.json())
             .then( charObj => console.log(charObj))
