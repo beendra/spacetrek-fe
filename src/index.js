@@ -14,6 +14,7 @@ const items = document.querySelector('div#items')
 const starbuxPTag = items.querySelector('p#starbux')
 const marsbarPTag = items.querySelector('p#marsbar')
 const livesPTag = items.querySelector('p#lives')
+const charInPlayDiv = document.querySelector('div#character-in-play')
 
 
 // ************************ pages***********************
@@ -187,6 +188,12 @@ page4.addEventListener('click', (e) => {
         page4.style.display = "none"
         pageOne()
         
+    } else if(e.target.matches('button#lose-life')) {
+        
+        page4.style.display = "none"
+        pageFive()
+        loseLife()
+        
     }
 })
 // ******************* el temp ********************
@@ -214,7 +221,9 @@ document.addEventListener('click', (e) => {
 
     } else if (e.target.matches('button[id="3"]')) {
         pageFour()
-    }  else if (e.target.matches('button[id="5"]')) {
+    } else if (e.target.matches('button[id="4"]')) {
+        pageFive()
+    } else if (e.target.matches('button[id="5"]')) {
         pageSix()
     } else if (e.target.matches('button[id="6"]')) {
         end()
@@ -224,6 +233,7 @@ document.addEventListener('click', (e) => {
         page7.style.display = "none"
         mainDiv.style.display = "block"
         items.style.display = "none"
+        charInPlayDiv.style.display = "none"
     }
 
 
@@ -380,7 +390,7 @@ function end () {
         items.dataset.id = currentPage
         console.log(`items dataset_id: ${items.dataset.id}`)
         
-        debugger
+        
         charObj = {
             current_state: currentPage,
             starbux: starbux,
@@ -408,30 +418,64 @@ function renderItems({starbux, marsbar, lives}){
     }
 
 
-// function loseLife() {
-//     let downOne = parseInt(livesPTag.textContent) - 1
-//     if (downOne === 0){
-//         console.log('Game Over')
-//     }
-//     else {
-//         charObj = {
-//             current_state: currentPage,
-//             starbux: starbux,
-//             marsbar: marsbar,
-//             lives: lives
-//         }
+function loseLife() {
+    
+    let downOne = parseInt(livesPTag.textContent) - 1
+    const starbux = parseInt(starbuxPTag.textContent)
+    const marsbar = parseInt(marsbarPTag.textContent)
+    const id = parseInt(startButton.dataset.id)
+    console.log(`lives: ${downOne}`)
+    
+    if (downOne === 0){
+        console.log('Game Over')
+        charObj = {
+            current_state: 0,
+            starbux: 5,
+            marsbar: 2,
+            lives: 2
+        }
 
-//         fetch(`${charsUrl}/${id}`, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Accept': 'application/json'
-//         },
-//         body: JSON.stringify({lives})
-//     })
-//     .then(resp => resp.json())
-//     .then()
-//     }
+        fetch(`${charsUrl}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(charObj)
+        })
+            .then(resp => resp.json())
+            .then(charObj => {
+                charInPlayDiv.style.display = "none"
+                console.log(charObj)
+             }) 
+    } else {
+        console.log('one down')
+        charObj = {
+            current_state: parseInt(items.dataset.id),
+            starbux: starbux,
+            marsbar: marsbar,
+            lives: downOne
+        }
+
+        fetch(`${charsUrl}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(charObj)
+    })
+    .then(resp => resp.json())
+    .then(updateChar => {
+        debugger
+        starbuxPTag.textContent = updateChar.starbux
+        marsbarPTag.textContent = updateChar.marsbar
+        livesPTag.textContent = updateChar.lives
+        console.log(updateChar)
+    })
+    }
+
+}
 
 //     //grab inner text content of current number of lives 
 //     //subtract one life
