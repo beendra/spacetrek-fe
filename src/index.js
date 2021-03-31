@@ -27,6 +27,8 @@ const page5 = document.querySelector('div[data-id="5"]')
 const page6 = document.querySelector('div[data-id="6"]')
 const page7 = document.querySelector('div#end')
 
+pages = [page1, page2, page3, page4, page5, page6, page7, charInPlayDiv, items]
+
 
 
 // ************************ init ***********************
@@ -163,32 +165,117 @@ createCharacterForm.addEventListener('submit', (e) => {
             console.log(charObj)
         })
 
+        e.target.reset()
+
 })
 
-// ******************* el deep space ********************
+// ******************* el page2 ********************
+page2.addEventListener('click', (e) => {
+    if(e.target.matches('button.greeting')) {
+       const h4 = document.createElement('h4')
+
+        h4.textContent = `Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar`
 
 
-// ******************* el page 4 ********************
+        page2.append(h4)
+
+        items.addEventListener('click', (e) => {
+            if(e.target.matches('img#give-bar')) {
+
+                let feedAlien = parseInt(marsbarPTag.textContent) - 1
+                const starbux = parseInt(starbuxPTag.textContent)
+                const lives = parseInt(livesPTag.textContent)
+                const id = parseInt(startButton.dataset.id)
+
+                charObj = {
+                    current_state: parseInt(items.dataset.id),
+                    starbux: starbux,
+                    marsbar: feedAlien,
+                    lives: lives
+                }
+        
+                fetch(`${charsUrl}/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(charObj)
+                })
+                    .then(resp => resp.json())
+                    .then(updateChar => {
+                
+                    starbuxPTag.textContent = updateChar.starbux
+                    marsbarPTag.textContent = updateChar.marsbar
+                    livesPTag.textContent = updateChar.lives
+                        
+                    const happy = document.createElement('h4')
+
+                    happy.textContent = `Alien: NOMNOMNOM...to advance to find pluto you must next find the movie star...good luck!` 
+                    movieStar = document.createElement('button')
+                    movieStar.textContent = `💫 🎬 ⭐️`
+                    page2.append(happy, movieStar)
+
+
+                    movieStar.addEventListener('click', () => {
+                        pageThree()
+                    })
+
+                })
+            }
+        })
+        
+    }
+})
+
+// ******************* el movie star ********************
+
+page3.addEventListener('click', (e) => {
+    if(e.target.matches('img#clark')){
+        console.log('clark')
+        loseLife()
+        alert("If It's Any Consolation, I Hate Me")
+
+
+    } else if (e.target.matches('img#han-solo')) {
+        console.log('solo')
+        loseLife()
+        alert('I think you just can’t bear to let a gorgeous guy like me out of your sight...')
+
+    } else if (e.target.matches('img#picard')) {
+        console.log('picard')
+        alert('ENGAGE!')
+        pageFour()
+
+
+    }
+})
+
+
+
+
+// ******************* el neptunes ********************
 
 
 page4.addEventListener('click', (e) => {
     if (e.target.matches('button#galaxy')) {
         const audio = e.target.previousElementSibling
         audio.play()
-        //43 update lose life
-        //if lives == 0, game over screen
+        loseLife()
 
     } else if(e.target.matches('button#saturn')) {
         const audio = e.target.previousElementSibling
         audio.play()
+        saturnDown()
         pageFive()
 
 
     } else if(e.target.matches('button#rolled')) {
         const audio = e.target.previousElementSibling
+        rickRolled()
         audio.play()
-        //43 update lose life
-        //if lives == 0, game over screen
+        
+        loseLife()
         page4.style.display = "none"
         pageOne()
         
@@ -200,15 +287,38 @@ page4.addEventListener('click', (e) => {
         
     }
 })
-// ******************* el temp ********************
-document.addEventListener('click', (e) => {
 
-    //43 update starbux fetch and update the view
-    // const id = parseInt(startButton.dataset.id)
+// ******************* el saturn ********************
+page5.addEventListener('click', (e) => {
+
+    if (e.target.matches('img#planet')) {
+
+        page5.innerHTML = `
+        <h1>🤣 YOU PLANET 🪅 </h1>
+        <button>proceed to deep space</button>
+        `
+
+        btn = page5.querySelector('button')
+        
+        btn.addEventListener('click', () => {
+            pageSix()
+        })
+    }
+   
+})
+
+// ******************* el deep space ********************
+page7.addEventListener('click', (e) => {
+    if(e.target.matches('button#main-page')) {
+        backToMain()
+    }
+})
+// ******************* el temp ********************
+page1.addEventListener('click', (e) => {
+
     if (e.target.matches('button[id="1"]')) {
 
-        //mark
-    
+        
         let payForParking = parseInt(starbuxPTag.textContent) - 2
         const marsbar = parseInt(marsbarPTag.textContent)
         const lives = parseInt(livesPTag.textContent)
@@ -236,36 +346,12 @@ document.addEventListener('click', (e) => {
         livesPTag.textContent = updateChar.lives
         console.log(updateChar)
     })
-    
-   
-    
 
-        
         pageTwo()
-
-    } else if (e.target.matches('button[id="2"]')) {
-        pageThree()
-
-    } else if (e.target.matches('button[id="3"]')) {
-        pageFour()
-    } else if (e.target.matches('button[id="4"]')) {
-        pageFive()
-    } else if (e.target.matches('button[id="5"]')) {
-        pageSix()
-    } else if (e.target.matches('button[id="6"]')) {
-        end()
-        items.style.display = "none"
-    } 
-
-    else if (e.target.matches('button[id="7"]')){
-        page7.style.display = "none"
-        mainDiv.style.display = "block"
-        items.style.display = "none"
-        charInPlayDiv.style.display = "none"
-    }
-
-
+}
 })
+
+
 
 
 
@@ -372,7 +458,10 @@ function pageSix () {
     updateCurrentState(6)
     document.body.addEventListener('keydown', (e) => {
         if (e.keyCode == 32) {
+            resetCharacter()
             end()
+        } else {
+            loseLife()
         }
     }) 
 }
@@ -381,7 +470,17 @@ function end () {
     
     page7.style.display = "block"
     page6.style.display = "none"
+    items.style.display = "none"
     updateCurrentState(0)
+}
+
+
+function backToMain() {
+    pages.forEach(page => {
+        page.style.display = "none"
+    })
+   
+    mainDiv.style.display = "block"    
 }
 
 
@@ -413,6 +512,13 @@ function end () {
         })
     }
 
+    function renderItems({starbux, marsbar, lives}){
+        starbuxPTag.textContent = starbux
+        marsbarPTag.textContent = marsbar
+        livesPTag.textContent = lives
+        }
+
+    // *********************** other ***********************
 
     function updateCurrentState (currentPage) {
         
@@ -444,11 +550,7 @@ function end () {
             .then( charObj => console.log(charObj))
     }
 
-function renderItems({starbux, marsbar, lives}){
-    starbuxPTag.textContent = starbux
-    marsbarPTag.textContent = marsbar
-    livesPTag.textContent = lives
-    }
+
 
 
 function loseLife() {
@@ -457,32 +559,14 @@ function loseLife() {
     const starbux = parseInt(starbuxPTag.textContent)
     const marsbar = parseInt(marsbarPTag.textContent)
     const id = parseInt(startButton.dataset.id)
-    console.log(`lives: ${downOne}`)
+    //mark
     
-    if (downOne === 0){
-        console.log('Game Over')
-        charObj = {
-            current_state: 0,
-            starbux: 5,
-            marsbar: 2,
-            lives: 2
-        }
-
-        fetch(`${charsUrl}/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(charObj)
-        })
-            .then(resp => resp.json())
-            .then(charObj => {
-                charInPlayDiv.style.display = "none"
-                console.log(charObj)
-             }) 
+    
+    if (downOne === 0){ 
+        gameOver()
+        
     } else {
-        console.log('one down')
+        
         charObj = {
             current_state: parseInt(items.dataset.id),
             starbux: starbux,
@@ -491,61 +575,64 @@ function loseLife() {
         }
 
         fetch(`${charsUrl}/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(charObj)
-    })
-    .then(resp => resp.json())
-    .then(updateChar => {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+                },
+            body: JSON.stringify(charObj)
+         })
+            .then(resp => resp.json())
+            .then(updateChar => {
         
-        starbuxPTag.textContent = updateChar.starbux
-        marsbarPTag.textContent = updateChar.marsbar
-        livesPTag.textContent = updateChar.lives
-        console.log(updateChar)
-    })
+                 starbuxPTag.textContent = updateChar.starbux
+                 marsbarPTag.textContent = updateChar.marsbar
+                livesPTag.textContent = updateChar.lives
+                console.log(updateChar)
+        })
     }
 
 }
 
-//     //grab inner text content of current number of lives 
-//     //subtract one life
-//     //if that value === 0 game over
-//     //then reset other values in the fetch
-//     //else subtract 1, update with fetch, display the current lives on the screen
-//     //in the update will also have to pull the innerText of the other two p tags to update 
 
-// }
+// ************************ alerts ***********************
 
-// function resetChar(){
-//     const name = e.target.name.value
-//     const image = e.target.image.value
-//     const user_id = logo.dataset.id
+function gameOver () {
+    alert('GAME OVER LOSER')
+    backToMain()
+    resetCharacter()
 
-//     const newChar = {
-//         name,
-//         image,
-//         user_id,
-//         starbux: 5,
-//         marsbar: 2,
-//         lives: 2,
-//         current_state: 0
-//     }
+}
 
-//     const body = {
-//     method: 'PATCH',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//     },
-//     body: JSON.stringify(newChar)
-// }
-//     fetch(charsUrl, body)
-//         .then(res => res.json())
-//         .then(charObj => {
-//             renderOneCharacter(charObj)
-//             console.log(charObj)
-//         })
-// }
+function resetCharacter() {
+    const id = parseInt(startButton.dataset.id)
+    
+    charObj = {
+        current_state: 0,
+        starbux: 5,
+        marsbar: 2,
+        lives: 2
+    }
+
+    fetch(`${charsUrl}/${id}`, {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify(charObj)
+    })
+        .then(resp => resp.json())
+        .then(charObj => {
+            charInPlayDiv.style.display = "none"
+            console.log(charObj)
+         }) 
+}
+
+function rickRolled () {
+    alert('🎧  YOU JUST GOT RICK ROLLED 🥁 badum CHING')
+}
+
+function saturnDown() {
+    alert('🪐 SA-TURN DOWN FOR WHAT 🪐')
+}
