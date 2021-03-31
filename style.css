@@ -9,3 +9,16 @@
 .images {
     width: 200px;
 }
+
+
+
+* {
+    color: blue;
+    font-weight: bold;
+}
+
+
+
+#logo {
+    height: 100px;
+}

@@ -431,28 +431,29 @@ function pageTwo () {
 }
 
 function pageThree () {
-    
+    document.body.style.backgroundImage = "url('images/moviestar.png')";
     page3.style.display = "block"
     page2.style.display = "none"
     updateCurrentState(3)
 }
 
 function pageFour () {
-    
+    document.body.style.backgroundImage = "url('images/neptunes.png')";
     page4.style.display = "block"
     page3.style.display = "none"
     updateCurrentState(4)
 }
 
 function pageFive () {
-    
+    document.body.style.backgroundImage = "url('images/saturn.png')";
     page5.style.display = "block"
     page4.style.display = "none"
     updateCurrentState(5)
 }
 
 function pageSix () {
-    
+
+    document.body.style.backgroundImage = "url('images/deepspace.png')";
     page6.style.display = "block"
     page5.style.display = "none"
     updateCurrentState(6)
@@ -467,7 +468,8 @@ function pageSix () {
 }
 
 function end () {
-    
+
+    document.body.style.backgroundImage = "url('images/spacebar.png')";
     page7.style.display = "block"
     page6.style.display = "none"
     items.style.display = "none"
