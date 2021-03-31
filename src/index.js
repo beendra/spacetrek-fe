@@ -164,6 +164,10 @@ createCharacterForm.addEventListener('submit', (e) => {
         })
 
 })
+
+// ******************* el deep space ********************
+
+
 // ******************* el page 4 ********************
 
 
@@ -202,16 +206,39 @@ document.addEventListener('click', (e) => {
     //43 update starbux fetch and update the view
     // const id = parseInt(startButton.dataset.id)
     if (e.target.matches('button[id="1"]')) {
-    //     fetch(`${charsUrl}/${id}`, { 
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({starbux: 3})
-    //     })
-    //         .then(res => res.json())
-    //         .then(charObj => console.log(charObj))
+
+        //mark
+    
+        let payForParking = parseInt(starbuxPTag.textContent) - 2
+        const marsbar = parseInt(marsbarPTag.textContent)
+        const lives = parseInt(livesPTag.textContent)
+        const id = parseInt(startButton.dataset.id)
+
+        charObj = {
+            current_state: parseInt(items.dataset.id),
+            starbux: payForParking,
+            marsbar: marsbar,
+            lives: lives
+        }
+
+        fetch(`${charsUrl}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(charObj)
+    })
+    .then(resp => resp.json())
+    .then(updateChar => {
+        starbuxPTag.textContent = updateChar.starbux
+        marsbarPTag.textContent = updateChar.marsbar
+        livesPTag.textContent = updateChar.lives
+        console.log(updateChar)
+    })
+    
+   
+    
 
         
         pageTwo()
@@ -227,6 +254,7 @@ document.addEventListener('click', (e) => {
         pageSix()
     } else if (e.target.matches('button[id="6"]')) {
         end()
+        items.style.display = "none"
     } 
 
     else if (e.target.matches('button[id="7"]')){
@@ -342,6 +370,11 @@ function pageSix () {
     page6.style.display = "block"
     page5.style.display = "none"
     updateCurrentState(6)
+    document.body.addEventListener('keydown', (e) => {
+        if (e.keyCode == 32) {
+            end()
+        }
+    }) 
 }
 
 function end () {
@@ -467,7 +500,7 @@ function loseLife() {
     })
     .then(resp => resp.json())
     .then(updateChar => {
-        debugger
+        
         starbuxPTag.textContent = updateChar.starbux
         marsbarPTag.textContent = updateChar.marsbar
         livesPTag.textContent = updateChar.lives
