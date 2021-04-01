@@ -172,7 +172,7 @@ createCharacterForm.addEventListener('submit', (e) => {
 // ******************* el page2 ********************
 page2.addEventListener('click', (e) => {
     if(e.target.matches('button.greeting')) {
-       const h4 = document.createElement('h4')
+    const h4 = document.createElement('h4')
 
         h4.textContent = `Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar`
 
@@ -304,7 +304,7 @@ page5.addEventListener('click', (e) => {
             pageSix()
         })
     }
-   
+
 })
 
 // ******************* el deep space ********************
@@ -417,13 +417,13 @@ function currentState (current_state) {
 // ************************ pages ***********************
 
 function pageOne () {
-    
+    document.body.style.backgroundImage = "url('images/parkingmeteor.png')";
     page1.style.display = "block"
     updateCurrentState(1)
 }
 
 function pageTwo () {
-
+    document.body.style.backgroundImage = "url('images/mercury.png')";
     page2.style.display = "block"
     page1.style.display = "none"
     updateCurrentState(2)
@@ -481,7 +481,7 @@ function backToMain() {
     pages.forEach(page => {
         page.style.display = "none"
     })
-   
+
     mainDiv.style.display = "block"    
 }
 
@@ -583,12 +583,12 @@ function loseLife() {
                 'Accept': 'application/json'
                 },
             body: JSON.stringify(charObj)
-         })
+        })
             .then(resp => resp.json())
             .then(updateChar => {
         
-                 starbuxPTag.textContent = updateChar.starbux
-                 marsbarPTag.textContent = updateChar.marsbar
+                starbuxPTag.textContent = updateChar.starbux
+                marsbarPTag.textContent = updateChar.marsbar
                 livesPTag.textContent = updateChar.lives
                 console.log(updateChar)
         })
@@ -628,7 +628,7 @@ function resetCharacter() {
         .then(charObj => {
             charInPlayDiv.style.display = "none"
             console.log(charObj)
-         }) 
+        }) 
 }
 
 function rickRolled () {
