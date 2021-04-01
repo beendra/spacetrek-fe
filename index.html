@@ -6,29 +6,37 @@
     <title>SPACE TREK</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="src/index.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
 </head>
-<body>
-    <main> 
-        <img id="logo" src="./images/logo.png">
-        <div id="login"> 
-            <h1>Login</h1>
-        <form>
-        <input
-        type="text"
-        name="username"
-        value=""
-        placeholder="enter username"
-        class="input-text"
-        />
-        <input
-        type="submit"
-        name="submit
-        id="login"
-        value="submit"
-        />
-    </form>
-    
+<body class="container">
+    <main class="container"> 
+        <div class="row justify-content-center logo">
+            <div class="col-12" >
+                <img id="logo" src="./images/logo.png">
+            </div>
         </div>
+            <div id="login"> 
+                <h1>Login</h1>
+                <br>
+                    <form>
+                        <input
+                            type="text"
+                            name="username"
+                            value=""
+                            placeholder="enter username"
+                            class="input-text"
+                        />
+                        <input
+                            type="submit"
+                            name="submit
+                            id="login"
+                            value="submit"
+                        />
+                    </form>
+            </div>
+
         <div id="main" class="pages"> 
             <h2>User Greeting</h2>
             <div id="characters"><ul id="show"></ul></div>
@@ -66,34 +74,34 @@
             <button type="button" id="help">help</button>
         </div>
         <div data-id="1" class="pages">
-            <h2>Parking Meteor</h2>
-            <p>Park your spaceship at the parking meteor for 2 starbux...</p>
             <p>description</p>
             <button id="1">park</button>
+            <p>Park your spaceship at the parking meteor for 2 starbux...</p>
+
         </div>
         <div data-id="2" class="pages">
             <h2>Freddy Mercury</h2>
-            <p>WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
-            <h4 id="alien">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
             <button class="greeting">good greeting</button>
             <button class="greeting">bad greeting</button>
+            <p>WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
+            <h4 id="alien">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
         </div>
         <div data-id="3" class="pages">
-            <h2>Movie Star</h2>
-            <div id="captains">
-    
-                <img src="./images/captain_clark.jpg" alt="Captain Clark" id="clark" class="images">
-                
-                <img src="./images/hansolo.jpg" alt="Han Solo" id="han-solo" class="images">
-        
-                <img src="./images/picard.jpg" alt="Captain Picard" id="picard" class="images">
-    
+            <div id="captains" class="container">
+                <div class="row col-md-12">
+                    <img src="./images/captain_clark.jpg" alt="Captain Clark" id="clark" class="images">
+                </div>
+                <div class="row col-md-12">
+                    <img src="./images/hansolo.jpg" alt="Han Solo" id="han-solo" class="images" height="300px">
+                </div>
+                <div class="row col-md-12">
+                    <img src="./images/picard.jpg" alt="Captain Picard" id="picard" class="images">
+                </div>
             </div>
             <h4>"Which captain.....??"</h4>
 
         </div>
         <div data-id="4" class="pages">
-            <h2>Neptunes</h2>
             <button id="lose-life">lose life and proceed</button>
             <audio>
                 <source src="./audio/galaxy.m4a" type="audio/mp4" />
@@ -127,14 +135,19 @@
     <div id= "character-in-play" class= "pages">
         
     </div>
-    <div id="items" class="pages">
-    
+    <div id="items" class="pages footer container">
+        <div class="col-4">
         <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
-        <p id="marsbar"></p>
+        <span id="marsbar"></span>
+        </div>
+        <div class="col-4">
         <img src="./images/starbux.png" alt="Starbux">
-        <p id="starbux"></p>
+        <span id="starbux"></span>
+        </div>
+        <div class="col-4">
         <img src="./images/lives.png" alt="Lives">
         <p id="lives"></p>
+        </div>
     </div>
 </body>
 </html>
