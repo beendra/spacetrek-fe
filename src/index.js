@@ -460,10 +460,12 @@ function end () {
     page7.style.display = "block"
     page6.style.display = "none"
     items.style.display = "none"
-    updateCurrentState(6)
+    resetCharacter()
 }
 
 function backToMain() {
+    document.body.style.backgroundImage = "url('images/purple.png')";
+
     pages.forEach(page => {
         page.style.display = "none"
     })
