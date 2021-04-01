@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ************************ login ***********************
 function login () {
-
-    
     const form = loginDiv.querySelector('form')
 
     form.addEventListener('submit', (e) => {
@@ -59,15 +57,12 @@ function login () {
         loginDiv.style.display = "none"
         mainDiv.style.display = "block"
     })
-
-
 }
 
 
-// ******************* event listeners ********************
-// ******************* el main page ************************
-
-
+// ******************* event listeners 
+// ***************************************
+// *******************  main page event listeners ************************
 
 mainDiv.addEventListener('click', (e) => {
     if (e.target.matches('button#start')){
@@ -169,7 +164,45 @@ createCharacterForm.addEventListener('submit', (e) => {
 
 })
 
-// ******************* el page2 ********************
+// ******************* parking meteor event listeners(page 1) ********************
+page1.addEventListener('click', (e) => {
+
+    if (e.target.matches('button[id="1"]')) {
+
+        
+        let payForParking = parseInt(starbuxPTag.textContent) - 2
+        const marsbar = parseInt(marsbarPTag.textContent)
+        const lives = parseInt(livesPTag.textContent)
+        const id = parseInt(startButton.dataset.id)
+
+        charObj = {
+            current_state: parseInt(items.dataset.id),
+            starbux: payForParking,
+            marsbar: marsbar,
+            lives: lives
+        }
+
+        fetch(`${charsUrl}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(charObj)
+    })
+    .then(resp => resp.json())
+    .then(updateChar => {
+        starbuxPTag.textContent = updateChar.starbux
+        marsbarPTag.textContent = updateChar.marsbar
+        livesPTag.textContent = updateChar.lives
+        console.log(updateChar)
+    })
+
+        pageTwo()
+}
+})
+
+// ******************* saturn event listeners(page 2) ********************
 page2.addEventListener('click', (e) => {
     if(e.target.matches('button.greeting')) {
     const h4 = document.createElement('h4')
@@ -228,7 +261,7 @@ page2.addEventListener('click', (e) => {
     }
 })
 
-// ******************* el movie star ********************
+// ******************* movie star event listeners(page 4)********************
 
 page3.addEventListener('click', (e) => {
     if(e.target.matches('img#clark')){
@@ -246,15 +279,13 @@ page3.addEventListener('click', (e) => {
         console.log('picard')
         alert('ENGAGE!')
         pageFour()
-
-
     }
 })
 
 
 
 
-// ******************* el neptunes ********************
+// ******************* neptunes event listeners(page 5) ********************
 
 
 page4.addEventListener('click', (e) => {
@@ -288,7 +319,7 @@ page4.addEventListener('click', (e) => {
     }
 })
 
-// ******************* el saturn ********************
+// ******************* saturn event listeners(page 5) ********************
 page5.addEventListener('click', (e) => {
 
     if (e.target.matches('img#planet')) {
@@ -299,59 +330,18 @@ page5.addEventListener('click', (e) => {
         `
 
         btn = page5.querySelector('button')
-        
         btn.addEventListener('click', () => {
             pageSix()
         })
     }
-
 })
 
-// ******************* el deep space ********************
+// ******************* deep space event listeners ********************
 page7.addEventListener('click', (e) => {
     if(e.target.matches('button#main-page')) {
         backToMain()
     }
 })
-// ******************* el temp ********************
-page1.addEventListener('click', (e) => {
-
-    if (e.target.matches('button[id="1"]')) {
-
-        
-        let payForParking = parseInt(starbuxPTag.textContent) - 2
-        const marsbar = parseInt(marsbarPTag.textContent)
-        const lives = parseInt(livesPTag.textContent)
-        const id = parseInt(startButton.dataset.id)
-
-        charObj = {
-            current_state: parseInt(items.dataset.id),
-            starbux: payForParking,
-            marsbar: marsbar,
-            lives: lives
-        }
-
-        fetch(`${charsUrl}/${id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(charObj)
-    })
-    .then(resp => resp.json())
-    .then(updateChar => {
-        starbuxPTag.textContent = updateChar.starbux
-        marsbarPTag.textContent = updateChar.marsbar
-        livesPTag.textContent = updateChar.lives
-        console.log(updateChar)
-    })
-
-        pageTwo()
-}
-})
-
-
 
 
 
@@ -371,7 +361,7 @@ function mainPage (user) {
     .then(userChars => renderAllCharacters(userChars))
 }
 
-// ************************ helper ***********************
+// ************************ helpers
 // ************************ start ***********************
 
 function startGame (id) {
@@ -380,7 +370,6 @@ function startGame (id) {
         .then(res => res.json())
         .then(({current_state}) => {
             currentState(current_state)
-
 })
 }
 
@@ -419,14 +408,14 @@ function currentState (current_state) {
 function pageOne () {
     document.body.style.backgroundImage = "url('images/parkingmeteor.png')";
     page1.style.display = "block"
-    updateCurrentState(1)
+    updateCurrentState(0)
 }
 
 function pageTwo () {
     document.body.style.backgroundImage = "url('images/mercury.png')";
     page2.style.display = "block"
     page1.style.display = "none"
-    updateCurrentState(2)
+    updateCurrentState(1)
 
 }
 
@@ -434,21 +423,21 @@ function pageThree () {
     document.body.style.backgroundImage = "url('images/moviestar.png')";
     page3.style.display = "block"
     page2.style.display = "none"
-    updateCurrentState(3)
+    updateCurrentState(2)
 }
 
 function pageFour () {
     document.body.style.backgroundImage = "url('images/neptunes.png')";
     page4.style.display = "block"
     page3.style.display = "none"
-    updateCurrentState(4)
+    updateCurrentState(3)
 }
 
 function pageFive () {
     document.body.style.backgroundImage = "url('images/saturn.png')";
     page5.style.display = "block"
     page4.style.display = "none"
-    updateCurrentState(5)
+    updateCurrentState(4)
 }
 
 function pageSix () {
@@ -456,7 +445,7 @@ function pageSix () {
     document.body.style.backgroundImage = "url('images/deepspace.png')";
     page6.style.display = "block"
     page5.style.display = "none"
-    updateCurrentState(6)
+    updateCurrentState(5)
     document.body.addEventListener('keydown', (e) => {
         if (e.keyCode == 32) {
             resetCharacter()
@@ -473,9 +462,8 @@ function end () {
     page7.style.display = "block"
     page6.style.display = "none"
     items.style.display = "none"
-    updateCurrentState(0)
+    updateCurrentState(6)
 }
-
 
 function backToMain() {
     pages.forEach(page => {
@@ -486,51 +474,49 @@ function backToMain() {
 }
 
 
-
-
-
 /*** HELPER METHODS ***/
 // ************************ render ***********************
 
 
-    function renderOneCharacter(charObj){
-        const show = document.querySelector('ul#show')
-        const img = document.createElement('img')
-        const btn = document.createElement('button')
-        btn.textContent = '❌'
-        btn.dataset.id = charObj.id
-        img.dataset.id = charObj.id
-        img.className = "images"
-        img.src = charObj.image
-        img.alt = charObj.name
+function renderOneCharacter(charObj){
+    const show = document.querySelector('ul#show')
+    const img = document.createElement('img')
+    const btn = document.createElement('button')
+    btn.textContent = '❌'
+    btn.dataset.id = charObj.id
+    img.dataset.id = charObj.id
+    img.className = "images"
+    img.src = charObj.image
+    img.alt = charObj.name
 
-        show.append(img, btn)
+    show.append(img, btn)
 
-    }
+}
 
-    function renderAllCharacters(userChars){
+function renderAllCharacters(userChars){
         userChars.forEach(charObj => {
             renderOneCharacter(charObj)
         })
-    }
+}
 
-    function renderItems({starbux, marsbar, lives}){
-        starbuxPTag.textContent = starbux
-        marsbarPTag.textContent = marsbar
-        livesPTag.textContent = lives
-        }
 
-    // *********************** other ***********************
+function renderItems({starbux, marsbar, lives}){
+    starbuxPTag.textContent = starbux
+    marsbarPTag.textContent = marsbar
+    livesPTag.textContent = lives
+}
 
-    function updateCurrentState (currentPage) {
+// *********************** other ***********************
+
+function updateCurrentState (currentPage) {
         
-        const starbux = parseInt(starbuxPTag.textContent)
-        const marsbar = parseInt(marsbarPTag.textContent)
-        const lives = parseInt(livesPTag.textContent)
-        console.log(`current page: ${currentPage}`)
-        items.dataset.id = currentPage
-        console.log(`items dataset_id: ${items.dataset.id}`)
-        
+    const starbux = parseInt(starbuxPTag.textContent)
+    const marsbar = parseInt(marsbarPTag.textContent)
+    const lives = parseInt(livesPTag.textContent)
+    console.log(`current page: ${currentPage}`)
+    items.dataset.id = currentPage
+    console.log(`items dataset_id: ${items.dataset.id}`)
+    const id = parseInt(startButton.dataset.id)
         
         charObj = {
             current_state: currentPage,
@@ -539,8 +525,8 @@ function backToMain() {
             lives: lives
         }
         
-        const id = parseInt(startButton.dataset.id)
-        fetch(`${charsUrl}/${id}`, {
+    
+    fetch(`${charsUrl}/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -566,15 +552,15 @@ function loseLife() {
     
     if (downOne === 0){ 
         gameOver()
-        
+    
     } else {
         
-        charObj = {
-            current_state: parseInt(items.dataset.id),
-            starbux: starbux,
-            marsbar: marsbar,
-            lives: downOne
-        }
+            charObj = {
+                current_state: parseInt(items.dataset.id),
+                starbux: starbux,
+                marsbar: marsbar,
+                lives: downOne
+            }
 
         fetch(`${charsUrl}/${id}`, {
             method: 'PATCH',
@@ -584,16 +570,15 @@ function loseLife() {
                 },
             body: JSON.stringify(charObj)
         })
-            .then(resp => resp.json())
-            .then(updateChar => {
+                .then(resp => resp.json())
+                .then(updateChar => {
         
-                starbuxPTag.textContent = updateChar.starbux
-                marsbarPTag.textContent = updateChar.marsbar
-                livesPTag.textContent = updateChar.lives
-                console.log(updateChar)
-        })
+                    starbuxPTag.textContent = updateChar.starbux
+                    marsbarPTag.textContent = updateChar.marsbar
+                    livesPTag.textContent = updateChar.lives
+                    console.log(updateChar)
+                })
     }
-
 }
 
 
