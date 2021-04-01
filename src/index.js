@@ -205,14 +205,12 @@ page1.addEventListener('click', (e) => {
 // ******************* saturn event listeners(page 2) ********************
 page2.addEventListener('click', (e) => {
     if(e.target.matches('button.greeting')) {
-    const h4 = document.createElement('h4')
-
-        h4.textContent = `Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar`
-
-
-        page2.append(h4)
-
+        const h4 = page2.querySelector('h4#alien')
+        h4.style.display = "block"
+    
+        
         items.addEventListener('click', (e) => {
+        
             if(e.target.matches('img#give-bar')) {
 
                 let feedAlien = parseInt(marsbarPTag.textContent) - 1
