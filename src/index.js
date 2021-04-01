@@ -350,15 +350,15 @@ page7.addEventListener('click', (e) => {
 function mainPage (user) {
 
     logo.dataset.id = user.id
-        const greetingH2 = mainDiv.querySelector('h2')
+    const greetingH2 = mainDiv.querySelector('h2')
 
         greetingH2.textContent = `
         Welcome Space Knight ${user.username}
         `
 
     fetch (`${usersUrl}/${user.id}`)
-    .then(resp => resp.json())
-    .then(userChars => renderAllCharacters(userChars))
+        .then(resp => resp.json())
+        .then(userChars => renderAllCharacters(userChars))
 }
 
 // ************************ helpers
