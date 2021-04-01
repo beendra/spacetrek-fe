@@ -24,14 +24,14 @@ body {
     z-index: -10;
 }
 
-.pixel-container{
+/* .pixel-container{
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width:100% !important;
     margin-bottom: 5em;
     display: none !important;
-}
+} */
 
 .footer {
     position: fixed;
