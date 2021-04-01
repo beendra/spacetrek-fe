@@ -1,4 +1,4 @@
-.pages, h4#alien {
+.pages, h4#alien, #happy {
     display: none;
 }
 
@@ -15,6 +15,9 @@
 * {
     color: blue;
     font-weight: bold;
+    /* outline: 5px solid white; */
+    text-emphasis: bold;
+    text-shadow: 1px 1px 2px #dbb6ff, 0 0 1em blue, 0 0 0.2em #dbb6ff;: 
 }
 
 
@@ -28,6 +31,35 @@
 body {
     background-color: #dbb6ff;
     background-repeat: no-repeat;
-    margin: center;
     width: 700px;
+    padding: none;
 }
+
+.question {
+    background-color: #dbb6ff;
+    display:inline-block;
+        border-radius: 20px;
+      padding: 0.5em 0.2em 0.8em 0.5em;
+
+}
+
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 10em;
+    width: 100%;
+    text-align: center;
+    background-color:  #dbb6ff;
+    padding: none;
+  }
+
+  main {
+      padding: none;
+  }
+
+  #picard {
+      height:200px;
+      width:200px;
+  }

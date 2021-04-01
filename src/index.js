@@ -11,10 +11,11 @@ const startButton = document.querySelector('button#start')
 const charDiv = document.querySelector('div#characters')
 const createCharacterForm = document.querySelector('form#create-character')
 const items = document.querySelector('div#items')
-const starbuxPTag = items.querySelector('p#starbux')
-const marsbarPTag = items.querySelector('p#marsbar')
-const livesPTag = items.querySelector('p#lives')
+const starbuxPTag = items.querySelector('span#starbux')
+const marsbarPTag = items.querySelector('span#marsbar')
+const livesPTag = items.querySelector('span#lives')
 const charInPlayDiv = document.querySelector('div#character-in-play')
+const main = document.querySelector('main')
 
 
 // ************************ pages***********************
@@ -26,6 +27,7 @@ const page4 = document.querySelector('div[data-id="4"]')
 const page5 = document.querySelector('div[data-id="5"]')
 const page6 = document.querySelector('div[data-id="6"]')
 const page7 = document.querySelector('div#end')
+const movieStar = document.querySelector('button#movie-star')
 
 pages = [page1, page2, page3, page4, page5, page6, page7, charInPlayDiv, items]
 
@@ -240,13 +242,8 @@ page2.addEventListener('click', (e) => {
                     marsbarPTag.textContent = updateChar.marsbar
                     livesPTag.textContent = updateChar.lives
                         
-                    const happy = document.createElement('h4')
-
-                    happy.textContent = `Alien: NOMNOMNOM...to advance to find pluto you must next find the movie star...good luck!` 
-                    movieStar = document.createElement('button')
-                    movieStar.textContent = `💫 🎬 ⭐️`
-                    page2.append(happy, movieStar)
-
+                    const happy = page2.querySelector('div#happy')
+                    happy.style.display = "block"
 
                     movieStar.addEventListener('click', () => {
                         pageThree()
@@ -279,8 +276,6 @@ page3.addEventListener('click', (e) => {
         pageFour()
     }
 })
-
-
 
 
 // ******************* neptunes event listeners(page 5) ********************
@@ -342,7 +337,6 @@ page7.addEventListener('click', (e) => {
 })
 
 
-
 // ************************ game page **********************
 
 function mainPage (user) {
@@ -353,6 +347,7 @@ function mainPage (user) {
         greetingH2.textContent = `
         Welcome Space Knight ${user.username}
         `
+        //mark
 
     fetch (`${usersUrl}/${user.id}`)
         .then(resp => resp.json())
@@ -460,7 +455,7 @@ function end () {
     page7.style.display = "block"
     page6.style.display = "none"
     items.style.display = "none"
-    updateCurrentState(6)
+    resetCharacter()
 }
 
 function backToMain() {
@@ -468,7 +463,8 @@ function backToMain() {
         page.style.display = "none"
     })
 
-    mainDiv.style.display = "block"    
+    mainDiv.style.display = "block" 
+    document.body.style.backgroundImage = "url('images/purple.png')";
 }
 
 
@@ -590,7 +586,10 @@ function gameOver () {
 }
 
 function resetCharacter() {
+    document.body.style.backgroundImage = "url('images/purple.png')";
     const id = parseInt(startButton.dataset.id)
+    
+
     
     charObj = {
         current_state: 0,
@@ -621,3 +620,5 @@ function rickRolled () {
 function saturnDown() {
     alert('🪐 SA-TURN DOWN FOR WHAT 🪐')
 }
+
+

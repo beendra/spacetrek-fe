@@ -8,7 +8,7 @@
     <script type="text/javascript" src="src/index.js" defer></script>
 </head>
 <body>
-    <main> 
+    
         <img id="logo" src="./images/logo.png">
         <div id="login"> 
             <h1>Login</h1>
@@ -29,6 +29,7 @@
     </form>
     
         </div>
+        <main> 
         <div id="main" class="pages"> 
             <h2>User Greeting</h2>
             <div id="characters"><ul id="show"></ul></div>
@@ -67,33 +68,47 @@
         </div>
         <div data-id="1" class="pages">
             <h2>Parking Meteor</h2>
-            <p>Park your spaceship at the parking meteor for 2 starbux...</p>
-            <p>description</p>
-            <button id="1">park</button>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <h3 class="question">It is the year 343089034820 and Mickey Mouse is the king of the Universe! He needs your help... Pluto has gone missing! It is your task to search the stars and find him! Pay your parking ticket at the parking meteor for 2 starbux and hop in your ship to find Pluto!</h3>
+            <button id="1">park spaceship</button>
         </div>
         <div data-id="2" class="pages">
             <h2>Freddy Mercury</h2>
-            <p>WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
-            <h4 id="alien">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
-            <button class="greeting">good greeting</button>
-            <button class="greeting">bad greeting</button>
+            
+            <p class="question">WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
+            <br>
+            <button class="greeting">P’takh</button>
+            <button class="greeting">Darmok and Jalad at Tanagra”</button>
+            <h4 id="alien" class="question">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
+            <div id="happy">
+                <h4 class="question">Alien: NOMNOMNOM...to advance to find pluto you must next find the movie star...good luck!</h4>
+                <button id="movie-star">💫 🎬 ⭐️</button>
+            </div>
+            
+            
         </div>
         <div data-id="3" class="pages">
-            <h2>Movie Star</h2>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br>
             <div id="captains">
+                
     
                 <img src="./images/captain_clark.jpg" alt="Captain Clark" id="clark" class="images">
                 
                 <img src="./images/hansolo.jpg" alt="Han Solo" id="han-solo" class="images">
         
                 <img src="./images/picard.jpg" alt="Captain Picard" id="picard" class="images">
+                
+                <h4 class="question">Which captain said...
+                    "Things are only impossible until they're not."</h4>
     
             </div>
-            <h4>"Which captain.....??"</h4>
+            
 
         </div>
         <div data-id="4" class="pages">
-            <h2>Neptunes</h2>
+            <br><br><br>
+            <p class="question">What is the official party song of saturn?</p>
+            <br>
             <button id="lose-life">lose life and proceed</button>
             <audio>
                 <source src="./audio/galaxy.m4a" type="audio/mp4" />
@@ -102,39 +117,45 @@
                 <audio>
                 <source src="./audio/saturn.m4a" type="audio/mp4" />
                 </audio>
-                <button id="saturn">turn</button>
+                <button id="saturn">🎧 turn-down-for-what 🎧 </button>
                 <audio>
                 <source src="./audio/rollled.m4a" type="audio/mp4" />
                 </audio>
                 <button id="rolled">✩pick me✩</button>
-            <p>"Question"</p>
-            <p>"Description"</p>
+            
         </div>
         <div data-id="5" class="pages">
             <h2>Saturn-down for WHAT</h2>
-            <p><b>How do you organize a space party??</b></p>
+            <p class="question"><b>How do you organize a space party??</b></p>
             <img src="./images/jupiter.png" alt="Lives" id="planet" class="images">
         </div>
         <div id="6" data-id="6" class="pages">
-            <h2> ----deep space---- </h2>
-            <p><b>Where do aliens go for a drink? Press the correct key to advance.</b></p>
+            <br><br><br><br>
+            <p class="question"><b>Where do aliens go for a drink? Press the correct key to advance.</b></p>
         </div>
         <div id="end" data-id="7" class="pages">
-            <h2> ✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
-            <button id="main-page">main</button>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <h2 class="question"> ✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
+            <p class="question">CONGRATULATIONS SPACE KNIGHT! You found Pluto...treat yourself to a Pan Galactic Gargle Blaster!</p>
+            <br><br>
+            <button id="main-page">back to main page</button>
         </div>
-    </main>
+    
     <div id= "character-in-play" class= "pages">
         
     </div>
-    <div id="items" class="pages">
+</main>
+    <div id="items" class="pages footer">
+        
+            <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
+            <span id="marsbar"></span>
+            <img src="./images/starbux.png" alt="Starbux">
+            <span id="starbux"></span>
+            <img src="./images/lives.png" alt="Lives">
+            <span id="lives"></span>
     
-        <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
-        <p id="marsbar"></p>
-        <img src="./images/starbux.png" alt="Starbux">
-        <p id="starbux"></p>
-        <img src="./images/lives.png" alt="Lives">
-        <p id="lives"></p>
+       
     </div>
 </body>
 </html>
