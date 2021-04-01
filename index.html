@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SPACE TREK</title>
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="src/index.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="background"></div>
-    <main class="container">
-      <div class="row justify-content-center logo">
-        <div class="col-12">
-          <img id="logo" src="./images/logo.png" />
-        </div>
-      </div>
-      <div id="login">
-        <h1>Login</h1>
-        <br />
-        <form>
-          <input
-            type="text"
-            name="username"
-            value=""
-            placeholder="enter username"
-            class="input-text"
-          />
-          <input type="submit" name="submit id="login" value="submit" />
-        </form>
-      </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SPACE TREK</title>
+        <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="src/index.js" defer></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+        />
+    </head>
+
+    <body>
+        <main>
+            <div class="logo">
+                <img id="logo" src="./images/logo.png" />
+            </div>
+
+            <div id="login">
+                <h1 class="login-input">Login</h1>
+                <br />
+                <form class="login-input">
+                <input class="login-input"
+                    type="text"
+                    name="username"
+                    value=""
+                    placeholder="enter username"
+                    class="input-text"
+                />
+                <br>
+                <input type="submit" name="submit id="login" value="submit"/>
+                </form>
+            </div>
 
       <div id="main" class="pages">
         <h2>User Greeting</h2>
@@ -157,6 +157,7 @@
       <div id="end" data-id="7" class="pages">
         <h2>✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
         <button id="main-page">main</button>
+      </div>
       </div>
     </main>
     <div id="character-in-play" class="pages"></div>

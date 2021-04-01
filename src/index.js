@@ -16,7 +16,6 @@ const marsbarPTag = items.querySelector('p#marsbar')
 const livesPTag = items.querySelector('p#lives')
 const charInPlayDiv = document.querySelector('div#character-in-play')
 
-
 // ************************ pages***********************
 
 const page1 = document.querySelector('div[data-id="1"]')
