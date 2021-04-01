@@ -1,3 +1,40 @@
+
+* {
+    color: blue;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #dbb6ff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: top;
+    padding: top 0, left 
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #dbb6ff;
+    text-align: center;
+}
+
+main {
+    margin-left: 20px;
+}
+
+#login{
+    padding: 100px
+}
+
+#main {
+    padding: 100px;
+}
+
+
 .pages, h4#alien {
     display: none;
 }
@@ -10,24 +47,26 @@
     width: 200px;
 }
 
-
-
-* {
-    color: blue;
-    font-weight: bold;
-}
-
-
-
 #logo {
     height: 100px;
-    width: 100%;
+    width: 700px;
     margin: center;
 }
 
-body {
-    background-color: #dbb6ff;
-    background-repeat: no-repeat;
-    margin: center;
-    width: 700px;
+.logo {
+    
 }
+
+
+h2{
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.row{
+    position: right;
+}
+
