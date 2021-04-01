@@ -40,10 +40,11 @@ body {
 
 #main {
     margin-top: 200px;
-    /* margin-left: 500px;
-    margin-right: 200px;
-    padding: 100px; */
+    margin-left: 500px;
+    padding: 50px;
+    align-content: center;
     text-align: center;
+    position: absolute;
 
 }
 
