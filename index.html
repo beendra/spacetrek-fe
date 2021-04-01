@@ -1,153 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPACE TREK</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="src/index.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-</head>
-<body class="container">
-    <main class="container"> 
-        <div class="row justify-content-center logo">
-            <div class="col-12" >
-                <img id="logo" src="./images/logo.png">
-            </div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="background"></div>
+    <main class="container">
+      <div class="row justify-content-center logo">
+        <div class="col-12">
+          <img id="logo" src="./images/logo.png" />
         </div>
-            <div id="login"> 
-                <h1>Login</h1>
-                <br>
-                    <form>
-                        <input
-                            type="text"
-                            name="username"
-                            value=""
-                            placeholder="enter username"
-                            class="input-text"
-                        />
-                        <input
-                            type="submit"
-                            name="submit
-                            id="login"
-                            value="submit"
-                        />
-                    </form>
-            </div>
+      </div>
+      <div id="login">
+        <h1>Login</h1>
+        <br />
+        <form>
+          <input
+            type="text"
+            name="username"
+            value=""
+            placeholder="enter username"
+            class="input-text"
+          />
+          <input type="submit" name="submit id="login" value="submit" />
+        </form>
+      </div>
 
-        <div id="main" class="pages"> 
-            <h2>User Greeting</h2>
-            <div id="characters"><ul id="show"></ul></div>
-            <button type="button" id="toggle">✨Create Character✨</button>
-            <form id="create-character">
-            <input
+      <div id="main" class="pages">
+        <h2>User Greeting</h2>
+        <div id="characters"><ul id="show"></ul></div>
+        <button type="button" id="toggle">✨Create Character✨</button>
+        <form id="create-character">
+          <input
             type="text"
             name="name"
             value=""
             placeholder="enter character name"
             class="input-text"
-            />
-            <select
+          />
+          <select
             type="select"
             name="image"
             placeholder="pick a character design"
             class="dropdown"
-            >
+          >
             <option value="./images/blueastroman.png">Blue</option>
             <option value="./images/orangeastroman.png">Orange</option>
             <option value="./images/purpleastroman.png">Purple</option>
             <option value="./images/redastroman.png">Red</option>
             <option value="./images/greenastroman.png">Green</option>
-            </select>
-            <input
-            type="submit"
-            name="submit
-            id="create"
-            value="Create"
+          </select>
+          <input type="submit" name="submit id="create" value="Create" />
+        </form>
+        <br /><br />
+        <button type="button" id="start">Start Game</button>
+        <br /><br />
+        <button type="button" id="help">help</button>
+      </div>
+      <div data-id="1" class="pages">
+        <p>description</p>
+        <button id="1">park</button>
+        <p>Park your spaceship at the parking meteor for 2 starbux...</p>
+      </div>
+      <div data-id="2" class="pages">
+        <h2>Freddy Mercury</h2>
+        <button class="greeting">good greeting</button>
+        <button class="greeting">bad greeting</button>
+        <p>
+          WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...
+        </p>
+        <h4 id="alien">
+          Oh no!! you have made the alien very angry, you told him his mom's
+          feet are smelly! To advance you must make the alien your friend.
+          Luckily aliens LOVE marsbars...click on your marsbar item to give the
+          alien a marsbar
+        </h4>
+      </div>
+      <div data-id="3" class="pages">
+        <div id="captains" class="container">
+          <div class="row col-md-12">
+            <img
+              src="./images/captain_clark.jpg"
+              alt="Captain Clark"
+              id="clark"
+              class="images"
             />
-            </form>
-            <br><br>
-            <button type="button" id="start">Start Game</button>
-            <br><br>
-            <button type="button" id="help">help</button>
+          </div>
+          <div class="row col-md-12">
+            <img
+              src="./images/hansolo.jpg"
+              alt="Han Solo"
+              id="han-solo"
+              class="images"
+              height="300px"
+            />
+          </div>
+          <div class="row col-md-12">
+            <img
+              src="./images/picard.jpg"
+              alt="Captain Picard"
+              id="picard"
+              class="images"
+            />
+          </div>
         </div>
-        <div data-id="1" class="pages">
-            <p>description</p>
-            <button id="1">park</button>
-            <p>Park your spaceship at the parking meteor for 2 starbux...</p>
-
-        </div>
-        <div data-id="2" class="pages">
-            <h2>Freddy Mercury</h2>
-            <button class="greeting">good greeting</button>
-            <button class="greeting">bad greeting</button>
-            <p>WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
-            <h4 id="alien">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
-        </div>
-        <div data-id="3" class="pages">
-            <div id="captains" class="container">
-                <div class="row col-md-12">
-                    <img src="./images/captain_clark.jpg" alt="Captain Clark" id="clark" class="images">
-                </div>
-                <div class="row col-md-12">
-                    <img src="./images/hansolo.jpg" alt="Han Solo" id="han-solo" class="images" height="300px">
-                </div>
-                <div class="row col-md-12">
-                    <img src="./images/picard.jpg" alt="Captain Picard" id="picard" class="images">
-                </div>
-            </div>
-            <h4>"Which captain.....??"</h4>
-
-        </div>
-        <div data-id="4" class="pages">
-            <button id="lose-life">lose life and proceed</button>
-            <audio>
-                <source src="./audio/galaxy.m4a" type="audio/mp4" />
-                </audio>
-                <button id="galaxy">⚛️galaxy⚛️</button>
-                <audio>
-                <source src="./audio/saturn.m4a" type="audio/mp4" />
-                </audio>
-                <button id="saturn">turn</button>
-                <audio>
-                <source src="./audio/rollled.m4a" type="audio/mp4" />
-                </audio>
-                <button id="rolled">✩pick me✩</button>
-            <p>"Question"</p>
-            <p>"Description"</p>
-        </div>
-        <div data-id="5" class="pages">
-            <h2>Saturn-down for WHAT</h2>
-            <p><b>How do you organize a space party??</b></p>
-            <img src="./images/jupiter.png" alt="Lives" id="planet" class="images">
-        </div>
-        <div id="6" data-id="6" class="pages">
-            <h2> ----deep space---- </h2>
-            <p><b>Where do aliens go for a drink? Press the correct key to advance.</b></p>
-        </div>
-        <div id="end" data-id="7" class="pages">
-            <h2> ✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
-            <button id="main-page">main</button>
-        </div>
+        <h4>"Which captain.....??"</h4>
+      </div>
+      <div data-id="4" class="pages">
+        <button id="lose-life">lose life and proceed</button>
+        <audio>
+          <source src="./audio/galaxy.m4a" type="audio/mp4" />
+        </audio>
+        <button id="galaxy">⚛️galaxy⚛️</button>
+        <audio>
+          <source src="./audio/saturn.m4a" type="audio/mp4" />
+        </audio>
+        <button id="saturn">turn</button>
+        <audio>
+          <source src="./audio/rollled.m4a" type="audio/mp4" />
+        </audio>
+        <button id="rolled">✩pick me✩</button>
+        <p>"Question"</p>
+        <p>"Description"</p>
+      </div>
+      <div data-id="5" class="pages">
+        <h2>Saturn-down for WHAT</h2>
+        <p><b>How do you organize a space party??</b></p>
+        <img
+          src="./images/jupiter.png"
+          alt="Lives"
+          id="planet"
+          class="images"
+        />
+      </div>
+      <div id="6" data-id="6" class="pages">
+        <h2>----deep space----</h2>
+        <p>
+          <b
+            >Where do aliens go for a drink? Press the correct key to
+            advance.</b
+          >
+        </p>
+      </div>
+      <div id="end" data-id="7" class="pages">
+        <h2>✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
+        <button id="main-page">main</button>
+      </div>
     </main>
-    <div id= "character-in-play" class= "pages">
-        
-    </div>
-    <div id="items" class="pages footer container">
-        <div class="col-4">
-        <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
-        <span id="marsbar"></span>
-        </div>
-        <div class="col-4">
-        <img src="./images/starbux.png" alt="Starbux">
-        <span id="starbux"></span>
-        </div>
-        <div class="col-4">
-        <img src="./images/lives.png" alt="Lives">
+    <div id="character-in-play" class="pages"></div>
+    <div id="items" class="pages footer container pixel-container">
+      <div class="col-4">
+        <img src="./images/marsbar.png" alt="MarsBars" id="give-bar" />
+        <p id="marsbar"></p>
+      </div>
+      <div class="col-4">
+        <img src="./images/starbux.png" alt="Starbux" />
+        <p id="starbux"></p>
+      </div>
+      <div class="col-4">
+        <img src="./images/lives.png" alt="Lives" />
         <p id="lives"></p>
-        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
