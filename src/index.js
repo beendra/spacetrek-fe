@@ -98,7 +98,7 @@ mainDiv.addEventListener('click', (e) => {
         
 
     } else if (e.target.matches('button#toggle')){
-        console.log('click')
+        
         const charCreateForm = document.querySelector('form#create-character')
             if (charCreateForm.style.display === "block"){
                 charCreateForm.style.display = "none"
@@ -106,7 +106,7 @@ mainDiv.addEventListener('click', (e) => {
             else {
                 charCreateForm.style.display = "block"
             }
-        console.log()
+        
     }
 
 })
@@ -114,11 +114,9 @@ mainDiv.addEventListener('click', (e) => {
 charDiv.addEventListener('click', (e) => {
     if (e.target.matches('img.images')){
         startButton.dataset.id = e.target.dataset.id
-        console.log(startButton.dataset.id)
     
     } else if(e.target.matches('button')) {
         
-        console.log('delete')
         fetch(`${charsUrl}/${parseInt(e.target.dataset.id)}`, {
             method: 'DELETE',
             headers: {
@@ -128,7 +126,6 @@ charDiv.addEventListener('click', (e) => {
         }) 
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 e.target.previousElementSibling.remove()
                 e.target.remove()
             })
@@ -166,7 +163,6 @@ createCharacterForm.addEventListener('submit', (e) => {
         .then(res => res.json())
         .then(charObj => {
             renderOneCharacter(charObj)
-            console.log(charObj)
         })
 
         e.target.reset()
@@ -204,7 +200,6 @@ page1.addEventListener('click', (e) => {
         starbuxPTag.textContent = updateChar.starbux
         marsbarPTag.textContent = updateChar.marsbar
         livesPTag.textContent = updateChar.lives
-        console.log(updateChar)
     })
 
         pageTwo()
@@ -267,18 +262,15 @@ page2.addEventListener('click', (e) => {
 
 page3.addEventListener('click', (e) => {
     if(e.target.matches('img#clark')){
-        console.log('clark')
         loseLife()
         alert("If It's Any Consolation, I Hate Me")
 
 
     } else if (e.target.matches('img#han-solo')) {
-        console.log('solo')
         loseLife()
         alert('I think you just can’t bear to let a gorgeous guy like me out of your sight...')
 
     } else if (e.target.matches('img#picard')) {
-        console.log('picard')
         alert('ENGAGE!')
         pageFour()
     }
@@ -310,13 +302,7 @@ page4.addEventListener('click', (e) => {
         page4.style.display = "none"
         pageOne()
         
-    } else if(e.target.matches('button#lose-life')) {
-        
-        page4.style.display = "none"
-        pageFive()
-        loseLife()
-        
-    }
+    } 
 })
 
 // ******************* saturn event listeners(page 5) ********************
@@ -514,9 +500,7 @@ function updateCurrentState (currentPage) {
     const starbux = parseInt(starbuxPTag.textContent)
     const marsbar = parseInt(marsbarPTag.textContent)
     const lives = parseInt(livesPTag.textContent)
-    console.log(`current page: ${currentPage}`)
     items.dataset.id = currentPage
-    console.log(`items dataset_id: ${items.dataset.id}`)
     const id = parseInt(startButton.dataset.id)
         
         charObj = {
@@ -577,7 +561,6 @@ function loseLife() {
                     starbuxPTag.textContent = updateChar.starbux
                     marsbarPTag.textContent = updateChar.marsbar
                     livesPTag.textContent = updateChar.lives
-                    console.log(updateChar)
                 })
     }
 }
@@ -593,7 +576,7 @@ function gameOver () {
 }
 
 function resetCharacter() {
-    document.body.style.backgroundImage = "url('images/purple.png')";
+
     const id = parseInt(startButton.dataset.id)
     
 
@@ -616,7 +599,6 @@ function resetCharacter() {
         .then(resp => resp.json())
         .then(charObj => {
             charInPlayDiv.style.display = "none"
-            console.log(charObj)
         }) 
 }
 
