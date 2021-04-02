@@ -294,14 +294,9 @@ page4.addEventListener('click', (e) => {
 
 
     } else if(e.target.matches('button#rolled')) {
-        // const audio = e.target.previousElementSibling
-        rickRolled()
-        // audio.play()
+        setTimeout(function(){ alert("Rolled"); }, 1000);
         
         loseLife()
-        // page4.style.display = "none"
-        // pageOne()
-        
     } 
 })
 
