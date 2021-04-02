@@ -1,6 +1,7 @@
-.pages, h4#alien, #happy {
+.pages, h4#alien, #happy, #uplanet {
     display: none;
 }
+
 
 #create-character {
     display: none;

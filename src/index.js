@@ -248,6 +248,8 @@ page2.addEventListener('click', (e) => {
                     happy.style.display = "block"
 
                     movieStar.addEventListener('click', () => {
+                        happy.style.display = "none"
+                        h4.style.display = "none"
                         pageThree()
                     })
 
@@ -305,13 +307,12 @@ page5.addEventListener('click', (e) => {
 
     if (e.target.matches('img#planet')) {
 
-        page5.innerHTML = `
-        <h1>🤣 YOU PLANET 🪅 </h1>
-        <button>proceed to deep space</button>
-        `
+        const uplanet = document.querySelector('div#uplanet')
+        uplanet.style.display = "block"
 
         btn = page5.querySelector('button')
         btn.addEventListener('click', () => {
+            uplanet.style.display = "none"
             pageSix()
         })
     }

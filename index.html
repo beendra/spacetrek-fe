@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,59 +8,37 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="src/index.js" defer></script>
 </head>
+
 <body>
-    
-        <img id="logo" src="./images/logo.png">
-        <div id="login"> 
-            <h1>Login</h1>
+
+    <img id="logo" src="./images/logo.png">
+    <div id="login">
+        <h1>Login</h1>
         <form>
-        <input
-        type="text"
-        name="username"
-        value=""
-        placeholder="enter username"
-        class="input-text"
-        />
-        <input
-        type="submit"
-        name="submit
-        id="login"
-        value="submit"
-        />
-    </form>
-    
-        </div>
-        <main> 
-        <div id="main" class="pages"> 
+            <input type="text" name="username" value="" placeholder="enter username" class="input-text" />
+            <input type="submit" name="submit
+        id=" login" value="submit" />
+        </form>
+
+    </div>
+    <main>
+        <div id="main" class="pages">
             <h2>User Greeting</h2>
-            <div id="characters"><ul id="show"></ul></div>
+            <div id="characters">
+                <ul id="show"></ul>
+            </div>
             <button type="button" id="toggle">✨Create Character✨</button>
             <form id="create-character">
-            <input
-            type="text"
-            name="name"
-            value=""
-            placeholder="enter character name"
-            class="input-text"
-            />
-            <select
-            type="select"
-            name="image"
-            placeholder="pick a character design"
-            class="dropdown"
-            >
-            <option value="./images/blueastroman.png">Blue</option>
-            <option value="./images/orangeastroman.png">Orange</option>
-            <option value="./images/purpleastroman.png">Purple</option>
-            <option value="./images/redastroman.png">Red</option>
-            <option value="./images/greenastroman.png">Green</option>
-            </select>
-            <input
-            type="submit"
-            name="submit
-            id="create"
-            value="Create"
-            />
+                <input type="text" name="name" value="" placeholder="enter character name" class="input-text" />
+                <select type="select" name="image" placeholder="pick a character design" class="dropdown">
+                    <option value="./images/blueastroman.png">Blue</option>
+                    <option value="./images/orangeastroman.png">Orange</option>
+                    <option value="./images/purpleastroman.png">Purple</option>
+                    <option value="./images/redastroman.png">Red</option>
+                    <option value="./images/greenastroman.png">Green</option>
+                </select>
+                <input type="submit" name="submit
+            id=" create" value="Create" />
             </form>
             <br><br>
             <button type="button" id="start">Start Game</button>
@@ -69,40 +48,45 @@
         <div data-id="1" class="pages">
             <h2>Parking Meteor</h2>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <h3 class="question">It is the year 343089034820 and Mickey Mouse is the king of the Universe! He needs your help... Pluto has gone missing! It is your task to search the stars and find him! Pay your parking ticket at the parking meteor for 2 starbux and hop in your ship to find Pluto!</h3>
+            <h3 class="question">It is the year 343089034820 and Mickey Mouse is the king of the Universe! He needs your
+                help... Pluto has gone missing! It is your task to search the stars and find him! Pay your parking
+                ticket at the parking meteor for 2 starbux and hop in your ship to find Pluto!</h3>
             <button id="1">park spaceship</button>
         </div>
         <div data-id="2" class="pages">
             <h2>Freddy Mercury</h2>
-            
+
             <p class="question">WOW an ALIEN! I bet he has a clue...Greet the alien...choose wisely...</p>
             <br>
             <button class="greeting">P’takh</button>
             <button class="greeting">Darmok and Jalad at Tanagra”</button>
-            <h4 id="alien" class="question">Oh no!! you have made the alien very angry, you told him his mom's feet are smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your marsbar item to give the alien a marsbar</h4>
+            <h4 id="alien" class="question">Oh no!! you have made the alien very angry, you told him his mom's feet are
+                smelly! To advance you must make the alien your friend. Luckily aliens LOVE marsbars...click on your
+                marsbar item to give the alien a marsbar</h4>
             <div id="happy">
-                <h4 class="question">Alien: NOMNOMNOM...to advance to find pluto you must next find the movie star...good luck!</h4>
+                <h4 class="question">Alien: NOMNOMNOM...to advance to find pluto you must next find the movie
+                    star...good luck!</h4>
                 <button id="movie-star">💫 🎬 ⭐️</button>
             </div>
-            
-            
+
+
         </div>
         <div data-id="3" class="pages">
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <div id="captains">
-                
-    
+
+
                 <img src="./images/captain_clark.jpg" alt="Captain Clark" id="clark" class="images">
-                
+
                 <img src="./images/hansolo.jpg" alt="Han Solo" id="han-solo" class="images">
-        
+
                 <img src="./images/picard.jpg" alt="Captain Picard" id="picard" class="images">
-                
+
                 <h4 class="question">Which captain said...
                     "Things are only impossible until they're not."</h4>
-    
+
             </div>
-            
+
 
         </div>
         <div data-id="4" class="pages">
@@ -111,21 +95,30 @@
             <br>
             <audio>
                 <source src="./audio/galaxy.m4a" type="audio/mp4" />
-                </audio>
-                <button id="galaxy">⚛️galaxy⚛️</button>
-                <audio>
+            </audio>
+            <button id="galaxy">⚛️galaxy⚛️</button>
+            <audio>
                 <source src="./audio/saturn.m4a" type="audio/mp4" />
-                </audio>
-                <button id="saturn">🎧 turn-down-for-what 🎧 </button>
-                <button id="rolled" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">✩pick me✩</button>
+            </audio>
+            <button id="saturn">🎧 turn-down-for-what 🎧 </button>
+            <button id="rolled" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">✩pick
+                me✩</button>
 
-               
-            
+
+
         </div>
         <div data-id="5" class="pages">
             <h2>Saturn-down for WHAT</h2>
-            <p class="question"><b>How do you organize a space party??</b></p>
+            <p class="question"><b>How do you organize a space party? Click on the answer...</b></p>
+            <br><br><br><br><br><br>
             <img src="./images/jupiter.png" alt="Lives" id="planet" class="images">
+            <div id="uplanet">
+            <img src="./images/you_planet.png" alt="Lives" 
+             class="images">
+             <button id= "deep">proceed to deep space</button>
+            </div>
+            
+
         </div>
         <div id="6" data-id="6" class="pages">
             <br><br><br><br>
@@ -135,25 +128,27 @@
             <br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br>
             <h2 class="question"> ✩✩✩✩✩ WINNER ✩✩✩✩✩</h2>
-            <p class="question">CONGRATULATIONS SPACE KNIGHT! You found Pluto...treat yourself to a Pan Galactic Gargle Blaster!</p>
+            <p class="question">CONGRATULATIONS SPACE KNIGHT! You found Pluto...treat yourself to a Pan Galactic Gargle
+                Blaster!</p>
             <br><br>
             <button id="main-page">back to main page</button>
         </div>
-    
-    <div id= "character-in-play" class= "pages">
-        
-    </div>
-</main>
+
+        <div id="character-in-play" class="pages">
+
+        </div>
+    </main>
     <div id="items" class="pages footer">
-        
-            <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
-            <span id="marsbar"></span>
-            <img src="./images/starbux.png" alt="Starbux">
-            <span id="starbux"></span>
-            <img src="./images/lives.png" alt="Lives">
-            <span id="lives"></span>
-    
-       
+
+        <img src="./images/marsbar.png" alt="MarsBars" id="give-bar">
+        <span id="marsbar"></span>
+        <img src="./images/starbux.png" alt="Starbux">
+        <span id="starbux"></span>
+        <img src="./images/lives.png" alt="Lives">
+        <span id="lives"></span>
+
+
     </div>
 </body>
+
 </html>
