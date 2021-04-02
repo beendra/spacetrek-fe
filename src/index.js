@@ -86,10 +86,17 @@ mainDiv.addEventListener('click', (e) => {
                 <img src= "${charObj.image}" alt= ${charObj.name}>`
                 charInPlayDiv.style.display = "block"
             })
-    } else if (e.target.matches('button#help')){
+    } else if (e.target.matches('button#delete')){
+    
+            mainDiv.style.display = "none"
+            loginDiv.style.display = "block"
+        
+        fetch(`${usersUrl}/${parseInt(logo.dataset.id)}`, {
+            method: 'DELETE'})
+                .then(res => res.json())
+            
+        
 
-        help();
-        console.log('help')
     } else if (e.target.matches('button#toggle')){
         console.log('click')
         const charCreateForm = document.querySelector('form#create-character')
@@ -347,7 +354,7 @@ function mainPage (user) {
         greetingH2.textContent = `
         Welcome Space Knight ${user.username}
         `
-        //mark
+        
 
     fetch (`${usersUrl}/${user.id}`)
         .then(resp => resp.json())
@@ -541,7 +548,7 @@ function loseLife() {
     const starbux = parseInt(starbuxPTag.textContent)
     const marsbar = parseInt(marsbarPTag.textContent)
     const id = parseInt(startButton.dataset.id)
-    //mark
+    
     
     
     if (downOne === 0){ 
