@@ -294,13 +294,13 @@ page4.addEventListener('click', (e) => {
 
 
     } else if(e.target.matches('button#rolled')) {
-        const audio = e.target.previousElementSibling
+        // const audio = e.target.previousElementSibling
         rickRolled()
-        audio.play()
+        // audio.play()
         
         loseLife()
-        page4.style.display = "none"
-        pageOne()
+        // page4.style.display = "none"
+        // pageOne()
         
     } 
 })
